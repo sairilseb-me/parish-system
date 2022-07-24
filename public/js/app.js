@@ -5381,9 +5381,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       searchName: ''
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['loadClients', 'getClientList', 'getAddModalStatus', 'getEditModalStatus'])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['loadClients', 'getClientList', 'getAddModalStatus', 'getEditModalStatus'])), {}, {
+    reloadClients: function reloadClients() {
+      return this.loadClients.data;
+    }
+  }),
   beforeUpdate: function beforeUpdate() {
-    this.getClientList;
+    this.loadClients;
   },
   mounted: function mounted() {
     this.getClientList;
@@ -5781,7 +5785,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _vm.loadClients ? _c("div", [_c("table", {
     staticClass: "table table-hover"
-  }, [_vm._m(0), _vm._v(" "), _vm._l(_vm.loadClients.data, function (client) {
+  }, [_vm._m(0), _vm._v(" "), _vm._l(_vm.reloadClients, function (client) {
     return _c("tbody", {
       key: client.id
     }, [_c("tr", [_c("td", [_vm._v(_vm._s(client.firstName) + " " + _vm._s(client.lastName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(client.birthDate))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(client.gender))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(client.contact))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(client.barangay) + ", " + _vm._s(client.municipality) + ", " + _vm._s(client.province))]), _vm._v(" "), _c("td", [_c("button", {
@@ -6726,9 +6730,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateClient: function updateClient(state, payload) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("api/clients/update-client/".concat(payload.id), payload).then(function (response) {
         if (response.data.success) {
+          state.closeEditModal = false;
+          state.getClientList;
           sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire('Success', response.data.message, 'success').then(function () {
-            state.getClientList;
-            state.closeEditModal = false;
+            console.log("Okay!");
           });
         }
       });

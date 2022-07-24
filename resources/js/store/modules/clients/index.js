@@ -89,10 +89,11 @@ export default {
             axios.post(`api/clients/update-client/${payload.id}`, payload)
             .then((response)=>{
                 if(response.data.success){
+                    state.closeEditModal = false;
+                    state.getClientList;
                     Swal.fire('Success', response.data.message, 'success')
                     .then(()=>{
-                        state.getClientList;
-                        state.closeEditModal = false;
+                        console.log("Okay!")
                     })
                 }
             })

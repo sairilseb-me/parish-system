@@ -18,7 +18,7 @@
                         <th>Edit/Delete</th>
                     </tr>
                 </thead>
-                <tbody v-for="client in loadClients.data" :key="client.id">
+                <tbody v-for="client in reloadClients" :key="client.id">
                     <tr>
                         <td>{{ client.firstName }} {{ client.lastName }}</td>
                         <td>{{ client.birthDate }}</td>
@@ -54,9 +54,12 @@ export default {
     },
     computed: {
         ...mapGetters('client', ['loadClients', 'getClientList', 'getAddModalStatus', 'getEditModalStatus']),
+        reloadClients(){
+            return this.loadClients.data
+        }
     },
     beforeUpdate(){
-        this.getClientList;
+        this.loadClients;
     },
     mounted() {
         this.getClientList;
