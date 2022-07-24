@@ -25,7 +25,7 @@
                         <td>{{ client.gender }}</td>
                         <td>{{ client.contact }}</td>
                         <td>{{ client.barangay }}, {{ client.municipality }}, {{ client.province }}</td>
-                        <td><button class="btn btn-warning btn-sm" @click.self="triggerEditModal(client.id)">Edit</button> <button class="btn btn-danger btn-sm">Delete</button></td>
+                        <td><button class="btn btn-warning btn-sm" @click="triggerEditModal(client.id)">Edit</button> <button class="btn btn-danger btn-sm">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -55,8 +55,8 @@ export default {
     computed: {
         ...mapGetters('client', ['loadClients', 'getClientList', 'getAddModalStatus', 'getEditModalStatus']),
     },
-    created(){
-        this.loadClients;
+    beforeUpdate(){
+        this.getClientList;
     },
     mounted() {
         this.getClientList;

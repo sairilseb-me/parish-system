@@ -5382,8 +5382,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['loadClients', 'getClientList', 'getAddModalStatus', 'getEditModalStatus'])),
-  created: function created() {
-    this.loadClients;
+  beforeUpdate: function beforeUpdate() {
+    this.getClientList;
   },
   mounted: function mounted() {
     this.getClientList;
@@ -5788,7 +5788,6 @@ var render = function render() {
       staticClass: "btn btn-warning btn-sm",
       on: {
         click: function click($event) {
-          if ($event.target !== $event.currentTarget) return null;
           return _vm.triggerEditModal(client.id);
         }
       }
@@ -6725,7 +6724,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     updateClient: function updateClient(state, payload) {
-      console.log(payload);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("api/clients/update-client/".concat(payload.id), payload).then(function (response) {
+        if (response.data.success) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire('Success', response.data.message, 'success').then(function () {
+            state.getClientList;
+            state.closeEditModal = false;
+          });
+        }
+      });
     }
   },
   actions: {

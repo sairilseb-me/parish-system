@@ -86,7 +86,16 @@ export default {
         })
        },
        updateClient(state, payload){
-        console.log(payload);
+            axios.post(`api/clients/update-client/${payload.id}`, payload)
+            .then((response)=>{
+                if(response.data.success){
+                    Swal.fire('Success', response.data.message, 'success')
+                    .then(()=>{
+                        state.getClientList;
+                        state.closeEditModal = false;
+                    })
+                }
+            })
        }
     },
     actions: {
