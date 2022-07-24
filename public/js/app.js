@@ -5360,11 +5360,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modals_AddClient_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/AddClient.vue */ "./resources/js/components/pages/clients/modals/AddClient.vue");
 /* harmony import */ var _modals_EditClients_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/EditClients.vue */ "./resources/js/components/pages/clients/modals/EditClients.vue");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5393,7 +5396,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.getClientList;
     this.getResults();
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('client', ['setAddModalStatus', 'getPaginationResult', 'searchClient', 'setEditModalStatus', 'editClient'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('client', ['setAddModalStatus', 'getPaginationResult', 'searchClient', 'setEditModalStatus', 'editClient', 'deleteClient'])), {}, {
     triggerAddModal: function triggerAddModal() {
       this.setAddModalStatus(true);
     },
@@ -5412,6 +5415,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     getSearchClient: function getSearchClient() {
       this.searchClient(this.searchName);
+    },
+    triggerDeleteClient: function triggerDeleteClient(id) {
+      var _this = this;
+
+      sweetalert2__WEBPACK_IMPORTED_MODULE_4___default().fire({
+        title: 'Deleting Client.',
+        text: 'You are about to delete a client. Continue?',
+        icon: 'warning',
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this.deleteClient(id);
+        }
+      });
     }
   })
 });
@@ -5796,7 +5814,12 @@ var render = function render() {
         }
       }
     }, [_vm._v("Edit")]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-danger btn-sm"
+      staticClass: "btn btn-danger btn-sm",
+      on: {
+        click: function click($event) {
+          return _vm.triggerDeleteClient(client.id);
+        }
+      }
     }, [_vm._v("Delete")])])])]);
   })], 2), _vm._v(" "), _c("Pagination", {
     staticClass: "mt-3",
@@ -6728,13 +6751,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     updateClient: function updateClient(state, payload) {
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("api/clients/update-client/".concat(payload.id), payload).then(function (response) {
         if (response.data.success) {
           state.closeEditModal = false;
           state.getClientList;
-          sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire('Success', response.data.message, 'success').then(function () {
-            console.log("Okay!");
+          sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire('Success', response.data.message, 'success').then(function (result) {
+            if (result.isConfirmed) {
+              console.log("Confirmed.");
+            }
           });
+        }
+
+        if (response.data.error) {
+          _this2.errors = response.data.message;
+        }
+
+        if (response.data.inputErrors) {
+          state.inputErrors = [];
+          var inputErrors = response.data.message;
+
+          for (var key in inputErrors) {
+            state.inputErrors.push(inputErrors[key][0]);
+          }
+        }
+      });
+    },
+    deleteClient: function deleteClient(state, payload) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("api/clients/delete-client/".concat(payload)).then(function (response) {
+        if (response.data.success) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire("Success!", response.data.message, 'success').then(function (result) {
+            if (result.isConfirmed) {
+              state.getClientList;
+            }
+          });
+        }
+
+        if (response.data.error) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire("Failed", response.data.message, 'error');
         }
       });
     }
@@ -6760,6 +6815,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateClient: function updateClient(context, payload) {
       context.commit('updateClient', payload);
+    },
+    deleteClient: function deleteClient(context, payload) {
+      context.commit('deleteClient', payload);
     }
   }
 });

@@ -81,7 +81,7 @@ class ClientControllers extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json(['error'=>true, 'message'=> $validator->errors()]);
+            return response()->json(['inputError'=>true, 'message'=> $validator->errors()]);
         }
 
         if($validator->validated()){
@@ -101,6 +101,16 @@ class ClientControllers extends Controller
             }else{
                 return response()->json(['error'=>true, 'message'=>'Failed to update a client.']);
             }
+        }
+    }
+
+    public function deleteClient($id){
+        $client = Client::find($id);
+        $client->delete();
+        if($client){
+            return response()->json(['success'=> true, 'message'=>'Successfully deleted a client.']);
+        }else{
+            return response()->json(['error'=> true, 'message'=>'Failed to delete a client.']);
         }
     }
 }

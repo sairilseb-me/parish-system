@@ -92,11 +92,39 @@ export default {
                     state.closeEditModal = false;
                     state.getClientList;
                     Swal.fire('Success', response.data.message, 'success')
-                    .then(()=>{
-                        console.log("Okay!")
+                    .then((result)=>{
+                        if(result.isConfirmed){
+                            console.log("Confirmed.");
+                        }
                     })
                 }
+                if(response.data.error){
+                    this.errors = response.data.message;
+                }
+                if(response.data.inputErrors){
+                    state.inputErrors = [];
+                    const inputErrors = response.data.message;
+                    for(let key in inputErrors){
+                        state.inputErrors.push(inputErrors[key][0])
+                    }
+                }   
             })
+       },
+       deleteClient(state, payload){
+        axios.post(`api/clients/delete-client/${payload}`)
+        .then((response)=>{
+            if(response.data.success){
+                Swal.fire("Success!", response.data.message, 'success')
+                .then((result)=>{
+                    if(result.isConfirmed){
+                        state.getClientList;
+                    }
+                })
+            }
+            if(response.data.error){
+                Swal.fire("Failed", response.data.message, 'error');
+            }
+        })
        }
     },
     actions: {
@@ -120,6 +148,9 @@ export default {
         },
         updateClient(context, payload){
             context.commit('updateClient', payload);
+        },
+        deleteClient(context, payload){
+            context.commit('deleteClient', payload);
         }
     }
 }

@@ -26,3 +26,4 @@ Route::get('/clients/search-client', [ClientControllers::class, 'searchClient'])
 Route::get('/clients/specific-client/{id}', [ClientControllers::class, 'show']);
 Route::get('clients/edit-client/{id}', [ClientControllers::class, 'edit']);
 Route::post('clients/update-client/{id}', [ClientControllers::class, 'updateClient']);
+Route::post('clients/delete-client/{id}', [ClientControllers::class, 'deleteClient']);

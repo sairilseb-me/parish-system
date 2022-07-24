@@ -25,7 +25,7 @@
                         <td>{{ client.gender }}</td>
                         <td>{{ client.contact }}</td>
                         <td>{{ client.barangay }}, {{ client.municipality }}, {{ client.province }}</td>
-                        <td><button class="btn btn-warning btn-sm" @click="triggerEditModal(client.id)">Edit</button> <button class="btn btn-danger btn-sm">Delete</button></td>
+                        <td><button class="btn btn-warning btn-sm" @click="triggerEditModal(client.id)">Edit</button> <button class="btn btn-danger btn-sm" @click="triggerDeleteClient(client.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -41,6 +41,7 @@ import {mapGetters, mapActions} from 'vuex';
 import LaravelVuePagination from 'laravel-vue-pagination';
 import AddClient from './modals/AddClient.vue';
 import EditClient from './modals/EditClients.vue';
+import Swal from 'sweetalert2';
 export default {
     components: {
         AddClient,
@@ -66,7 +67,7 @@ export default {
         this.getResults();
     },
     methods: {
-        ...mapActions('client', ['setAddModalStatus', 'getPaginationResult', 'searchClient', 'setEditModalStatus', 'editClient']),
+        ...mapActions('client', ['setAddModalStatus', 'getPaginationResult', 'searchClient', 'setEditModalStatus', 'editClient', 'deleteClient']),
         triggerAddModal(){
             this.setAddModalStatus(true);
         },
@@ -85,6 +86,20 @@ export default {
         },
         getSearchClient(){
             this.searchClient(this.searchName);
+        },
+        triggerDeleteClient(id){
+            Swal.fire({
+                title: 'Deleting Client.',
+                text: 'You are about to delete a client. Continue?',
+                icon: 'warning',
+                showConfirmButton: true,
+                showCancelButton: true,
+            })
+            .then((result)=>{
+                if(result.isConfirmed){
+                  this.deleteClient(id);
+                }
+            });
         }
     }
 }
