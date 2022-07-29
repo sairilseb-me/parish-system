@@ -13,4 +13,8 @@ class Client extends Model
     protected $primarykey = 'id'; 
     protected $keyType = 'string';
     protected $fillable = ['id', 'firstName', 'lastName', 'birthDate', 'gender', 'contact', 'barangay', 'municipality', 'province'];
+
+    public function baptism(){
+        return $this->belongsTo('App\Baptism', 'client_id');
+    }
 }

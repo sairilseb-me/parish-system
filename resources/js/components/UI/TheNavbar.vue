@@ -22,6 +22,9 @@
                 <li class="nav-item">
                 <router-link class="nav-link" :to="{name: 'marriage'}">Marriage</router-link>
                 </li>
+                <li class="nav-item">
+                <router-link class="nav-link" :to="{name: 'priests'}">Priests</router-link>
+                </li>
             </ul>
                 <div class="d-flex flex-row">
                     <button class="btn btn-primary">Login</button>

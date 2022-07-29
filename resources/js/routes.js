@@ -4,6 +4,7 @@ import ClientPage from './components/pages/clients/ClientPage.vue';
 import BurialPage from './components/pages/burial/BurialPage.vue';
 import BaptismPage from './components/pages/baptism/BaptismPage.vue';
 import MarriagePage from './components/pages/marriage/MarriagePage.vue';
+import PriestsPage from './components/pages/priest/PriestPage.vue';
 
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
         path: '/marriage',
         component: MarriagePage,
         name: 'marriage'
+    },
+    {
+        path: '/priests',
+        component: PriestsPage,
+        name: 'priests'
     }
 ];
 

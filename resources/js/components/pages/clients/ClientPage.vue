@@ -97,7 +97,7 @@ export default {
             })
             .then((result)=>{
                 if(result.isConfirmed){
-                  this.deleteClient(id);
+                  this.deleteClient(id)
                 }
             });
         }
