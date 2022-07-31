@@ -30,7 +30,7 @@
             </ul> -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" @click="closeEditModal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" @click="triggerUpdatePriest">Save changes</button>
             </div>
             </div>
         </div>
@@ -48,9 +48,12 @@ export default {
         ...mapGetters('priest', ['getPriestData'])
    },
    methods: {
-    ...mapActions('priest', ['setEditModalStatus']),
+    ...mapActions('priest', ['setEditModalStatus', 'savePriestData']),
     closeEditModal(){
         this.setEditModalStatus(false);
+    },
+    triggerUpdatePriest(){
+        this.savePriestData(this.getPriestData);
     }
    }
 

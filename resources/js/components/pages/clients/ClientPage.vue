@@ -15,7 +15,7 @@
                         <th>Gender</th>
                         <th>Contact Number</th>
                         <th>Address</th>
-                        <th>Edit/Delete</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody v-for="client in reloadClients" :key="client.id">
@@ -25,7 +25,7 @@
                         <td>{{ client.gender }}</td>
                         <td>{{ client.contact }}</td>
                         <td>{{ client.barangay }}, {{ client.municipality }}, {{ client.province }}</td>
-                        <td><button class="btn btn-warning btn-sm" @click="triggerEditModal(client.id)">Edit</button> <button class="btn btn-danger btn-sm" @click="triggerDeleteClient(client.id)">Delete</button></td>
+                        <td><router-link class="btn btn-primary btn-sm" :to="{ name: 'specific-client', params: {id: client.id} }">View</router-link> <button class="btn btn-warning btn-sm" @click="triggerEditModal(client.id)">Edit</button> <button class="btn btn-danger btn-sm" @click="triggerDeleteClient(client.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

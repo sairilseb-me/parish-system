@@ -113,4 +113,5 @@ class ClientControllers extends Controller
             return response()->json(['error'=> true, 'message'=>'Failed to delete a client.']);
         }
     }
+
 }

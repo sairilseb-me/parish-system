@@ -74,6 +74,7 @@ export default {
             .then((response)=>{
                 if(response.data){
                     state.clients = response.data;
+                    console.log(state.clients);
                 }
             })
        },

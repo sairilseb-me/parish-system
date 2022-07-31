@@ -20,7 +20,7 @@
                     <td>{{ priest.title }}</td>
                     <td>{{ priest.firstName }}</td>
                     <td>{{ priest.lastName }}</td>
-                    <td><button class="btn btn-warning btn-sm" @click="showEditModal(priest.id)">Edit</button> <button class="btn btn-danger btn-sm">Delete</button></td>
+                    <td><button class="btn btn-warning btn-sm" @click="showEditModal(priest.id)">Edit</button> <button class="btn btn-danger btn-sm" @click="triggerDeletePriest(priest.id)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -32,6 +32,8 @@
 import {mapGetters, mapActions} from 'vuex'
 import AddPriest from './modals/AddPriest.vue';
 import EditPriest from './modals/EditPriest.vue';
+
+import Swal from 'sweetalert2';
 export default {
     components: {
         AddPriest,
@@ -44,12 +46,25 @@ export default {
         ...mapGetters('priest', ['getAddModalStatus','getEditModalStatus', 'loadPriestsList', 'getPriestsList']),
    },
    methods: {
-        ...mapActions('priest', ['setAddModalStatus', 'setEditModalStatus', 'fetchPriestData']),
+        ...mapActions('priest', ['setAddModalStatus', 'setEditModalStatus', 'fetchPriestData', 'deletePriest']),
         showAddModal(){
             this.setAddModalStatus(true);
         },
         showEditModal(id){
             this.fetchPriestData(id);
+        },
+        triggerDeletePriest(id){
+            Swal.fire({
+                title: 'Deleting Priest',
+                text: 'You are about to delete a Priest data, continue?',
+                icon: 'warning',
+                showConfirmButton: true,
+                showCancelButton: true,
+            }).then((result)=>{
+                if(result.isConfirmed){
+                    this.deletePriest(id);
+                }
+            })
         }
    }
 }

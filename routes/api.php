@@ -33,3 +33,5 @@ Route::post('clients/delete-client/{id}', [ClientControllers::class, 'deleteClie
 Route::get('/priests', [PriestController::class, 'index']);
 Route::post('/priests/add-priest', [PriestController::class, 'store']);
 Route::get('/priests/specific-data/{id}', [PriestController::class, 'edit']);
+Route::post('/priests/update-priest', [PriestController::class, 'update']);
+Route::post('/priests/delete-priest/{id}', [PriestController::class, 'delete']);

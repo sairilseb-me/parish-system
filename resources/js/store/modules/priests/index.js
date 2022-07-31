@@ -26,7 +26,6 @@ export default {
         getPriestsList(state){
             axios.get('api/priests')
             .then((response)=>{
-                console.log(response.data);
                 state.priests = response.data;
             })
         },
@@ -78,6 +77,49 @@ export default {
                     }
                 })
             })
+        },
+        savePriestData(state, payload){
+            axios.post('api/priests/update-priest', payload)
+            .then((response)=>{
+                if(response.data.success){
+                    Swal.fire('Success', response.data.message, 'success')
+                    .then((result)=>{
+                        if(result.isConfirmed){
+                            state.getPriestsList;
+                            state.editModalStatus = false;
+                        }
+                    })
+                }
+
+                if(response.data.inputErrors){
+                    state.inputErrors = [];
+                    const inputErrors = response.data.message;
+                    for(let key in inputErrors){
+                        state.inputErrors.push(inputErrors[key][0]);
+                    }
+                }
+                
+                if(response.data.error){
+                    Swal.fire('Error', response.data.message, 'error');
+                }
+            })
+        },
+        deletePriest(state, payload){
+            axios.post(`api/priests/delete-priest/${payload}`)
+            .then((response)=>{
+                if(response.data.success){
+                    Swal.fire('Success', response.data.message, 'success')
+                    .then((result)=>{
+                        if(result.isConfirmed){
+                            state.getPriestsList;
+                        }
+                    })
+                }
+
+                if(response.data.error){
+                    Swal.fire('Error', response.data.message, 'error');
+                }
+            })
         }
     },
     actions: {
@@ -92,6 +134,12 @@ export default {
         },
         fetchPriestData(context, payload){
             context.commit('fetchPriestData', payload);
+        },
+        savePriestData(context, payload){
+            context.commit('savePriestData', payload);
+        },
+        deletePriest(context, payload){
+            context.commit('deletePriest', payload);
         }
     }
 }
