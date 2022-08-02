@@ -6,17 +6,17 @@
             <p>Name: {{ getClientData.firstName }} {{ getClientData.lastName }}</p>
             <p>Gender: {{ getClientData.gender }}</p>
             <p>Address: {{ getClientData.barangay }} {{ getClientData.municipality }} {{ getClientData.province }}</p>
+            <p>Parents: {{ getClientData.fathersName }} and {{ getClientData.mothersName }}</p>
         </div>  
         <div class="baptism-data mt-3">
-            <h3>Baptism Data</h3>
-            <div class="mt-2">
-                <label for="fathersName" class="form-label">Father's Name:</label>
-                <input type="text" class="form-control" id="fathersName">
+            <h3>Baptism Data:</h3>
+            <div class="mb-2">
+                <label for="priest" class="form-label">Officiant:</label>
+                <select name="priest" id="" class="form-select">
+                    <option :value="priest.id" v-for="priest in loadPriestsList.data" :key="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
+                </select>
             </div>
-            <div class="mt-2">
-                <label for="mothersName" class="form-label">Mothers's Name:</label>
-                <input type="text" class="form-control" id="mothersName">
-            </div>
+            
         </div>
     </div>
 </template>
@@ -26,7 +26,11 @@
 import {mapGetters} from 'vuex';
 export default {
     computed: {
-        ...mapGetters('client', ['getClientData'])
+        ...mapGetters('client', ['getClientData']),
+        ...mapGetters('priest', ['getPriestsList', 'loadPriestsList']),
+    },
+    mounted(){
+        this.getPriestsList
     }
 }
 </script>

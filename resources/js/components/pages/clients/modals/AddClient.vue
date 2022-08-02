@@ -33,6 +33,14 @@
                             <input type="text" class="form-control" id="contact" v-model="client.contact">
                         </div>
                         <div class="mb-3">
+                            <label for="fathersName" class="form-label">Father's Name:</label>
+                            <input type="text" class="form-control" id="fathersName" v-model="client.fathersName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mothersName" class="form-label">Mothers Name:</label>
+                            <input type="text" class="form-control" id="mothersName" v-model="client.mothersName">
+                        </div>
+                        <div class="mb-3">
                             <label for="barangay" class="form-label">Barangay:</label>
                             <input type="text" class="form-control" id="barangay" v-model="client.barangay">
                         </div>
@@ -72,6 +80,8 @@ export default {
                 lastName: '',
                 birthDate: null,
                 gender: 'none',
+                fathersName: '',
+                mothersName: '',
                 contact: '',
                 barangay: '',
                 municipality: '',

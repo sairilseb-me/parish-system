@@ -5364,7 +5364,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['getClientData']))
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['getClientData'])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('priest', ['getPriestsList', 'loadPriestsList'])),
+  mounted: function mounted() {
+    this.getPriestsList;
+  }
 });
 
 /***/ }),
@@ -5518,6 +5521,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         lastName: '',
         birthDate: null,
         gender: 'none',
+        fathersName: '',
+        mothersName: '',
         contact: '',
         barangay: '',
         municipality: '',
@@ -5960,43 +5965,32 @@ var render = function render() {
     }
   }, [_c("h1", [_vm._v("Add a Baptism Data")]), _vm._v(" "), _c("div", {
     staticClass: "client-data"
-  }, [_c("h3", [_vm._v("Client Data:")]), _vm._v(" "), _c("p", [_vm._v("Name: " + _vm._s(_vm.getClientData.firstName) + " " + _vm._s(_vm.getClientData.lastName))]), _vm._v(" "), _c("p", [_vm._v("Gender: " + _vm._s(_vm.getClientData.gender))]), _vm._v(" "), _c("p", [_vm._v("Address: " + _vm._s(_vm.getClientData.barangay) + " " + _vm._s(_vm.getClientData.municipality) + " " + _vm._s(_vm.getClientData.province))])]), _vm._v(" "), _vm._m(0)]);
+  }, [_c("h3", [_vm._v("Client Data:")]), _vm._v(" "), _c("p", [_vm._v("Name: " + _vm._s(_vm.getClientData.firstName) + " " + _vm._s(_vm.getClientData.lastName))]), _vm._v(" "), _c("p", [_vm._v("Gender: " + _vm._s(_vm.getClientData.gender))]), _vm._v(" "), _c("p", [_vm._v("Address: " + _vm._s(_vm.getClientData.barangay) + " " + _vm._s(_vm.getClientData.municipality) + " " + _vm._s(_vm.getClientData.province))]), _vm._v(" "), _c("p", [_vm._v("Parents: " + _vm._s(_vm.getClientData.fathersName) + " and " + _vm._s(_vm.getClientData.mothersName))])]), _vm._v(" "), _c("div", {
+    staticClass: "baptism-data mt-3"
+  }, [_c("h3", [_vm._v("Baptism Data:")]), _vm._v(" "), _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "priest"
+    }
+  }, [_vm._v("Officiant:")]), _vm._v(" "), _c("select", {
+    staticClass: "form-select",
+    attrs: {
+      name: "priest",
+      id: ""
+    }
+  }, _vm._l(_vm.loadPriestsList.data, function (priest) {
+    return _c("option", {
+      key: priest.id,
+      domProps: {
+        value: priest.id
+      }
+    }, [_vm._v(_vm._s(priest.firstName) + " " + _vm._s(priest.lastName))]);
+  }), 0)])])]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "baptism-data mt-3"
-  }, [_c("h3", [_vm._v("Baptism Data")]), _vm._v(" "), _c("div", {
-    staticClass: "mt-2"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "fathersName"
-    }
-  }, [_vm._v("Father's Name:")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "fathersName"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "mt-2"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "mothersName"
-    }
-  }, [_vm._v("Mothers's Name:")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "mothersName"
-    }
-  })])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -6189,13 +6183,25 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "container mt-5 box-shadow",
+    staticClass: "container mt-5",
     staticStyle: {
       width: "50%"
     }
-  }, [_vm.getClientData ? _c("div", [_c("h3", [_vm._v("Client Details")]), _vm._v(" "), _c("h5", {
-    staticClass: "mt-3"
-  }, [_vm._v("Name: " + _vm._s(_vm.getClientData.firstName) + " " + _vm._s(_vm.getClientData.lastName))]), _vm._v(" "), _c("p", [_vm._v("Gender: " + _vm._s(_vm.getClientData.gender))]), _vm._v(" "), _c("p", [_vm._v("Birthdate: " + _vm._s(_vm.getClientData.birthDate))]), _vm._v(" "), _c("p", [_vm._v("Contact: " + _vm._s(_vm.getClientData.contact))]), _vm._v(" "), _c("p", [_vm._v("Address: " + _vm._s(_vm.getClientData.barangay) + ", " + _vm._s(_vm.getClientData.municipality) + " " + _vm._s(_vm.getClientData.province))]), _vm._v(" "), _c("div", {
+  }, [_vm.getClientData ? _c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-header"
+  }, [_vm._v("\n            Client's Data\n        ")]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v(_vm._s(_vm.getClientData.firstName) + " " + _vm._s(_vm.getClientData.lastName))]), _vm._v(" "), _c("p", [_vm._v("Gender: " + _vm._s(_vm.getClientData.gender))]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v("Birthdate: " + _vm._s(_vm.getClientData.birthDate))]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v("Contact: " + _vm._s(_vm.getClientData.contact))]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v("Address: " + _vm._s(_vm.getClientData.barangay) + ", " + _vm._s(_vm.getClientData.municipality) + " " + _vm._s(_vm.getClientData.province))]), _vm._v(" "), _c("div", {
     staticClass: "mt-4"
   }, [_c("h5", [_vm._v("Data Check:")]), _vm._v(" "), _c("div", {
     staticClass: "d-flex box-options"
@@ -6216,7 +6222,7 @@ var render = function render() {
     attrs: {
       to: "#"
     }
-  }, [_vm._v("Add Burial")])], 1)])]) : _c("div", {
+  }, [_vm._v("Add Burial")])], 1)])])]) : _c("div", {
     staticClass: "loading-screen"
   }, [_vm._m(0)])]);
 };
@@ -6435,6 +6441,64 @@ var render = function render() {
         if ($event.target.composing) return;
 
         _vm.$set(_vm.client, "contact", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "fathersName"
+    }
+  }, [_vm._v("Father's Name:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.client.fathersName,
+      expression: "client.fathersName"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "fathersName"
+    },
+    domProps: {
+      value: _vm.client.fathersName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.client, "fathersName", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "mothersName"
+    }
+  }, [_vm._v("Mothers Name:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.client.mothersName,
+      expression: "client.mothersName"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "mothersName"
+    },
+    domProps: {
+      value: _vm.client.mothersName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.client, "mothersName", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -6725,6 +6789,64 @@ var render = function render() {
       value: "female"
     }
   }, [_vm._v("Female")])])]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "fathersName"
+    }
+  }, [_vm._v("Father's Name:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.getClientData.fathersName,
+      expression: "getClientData.fathersName"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "fathersName"
+    },
+    domProps: {
+      value: _vm.getClientData.fathersName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.getClientData, "fathersName", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "mothersName"
+    }
+  }, [_vm._v("Mothers Name:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.getClientData.mothersName,
+      expression: "getClientData.mothersName"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "mothersName"
+    },
+    domProps: {
+      value: _vm.getClientData.mothersName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.getClientData, "mothersName", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",

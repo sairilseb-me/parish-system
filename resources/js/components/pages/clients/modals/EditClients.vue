@@ -30,6 +30,14 @@
                            </select>
                         </div>
                         <div class="mb-3">
+                            <label for="fathersName" class="form-label">Father's Name:</label>
+                            <input type="text" class="form-control" id="fathersName" v-model="getClientData.fathersName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mothersName" class="form-label">Mothers Name:</label>
+                            <input type="text" class="form-control" id="mothersName" v-model="getClientData.mothersName">
+                        </div>
+                        <div class="mb-3">
                             <label for="contact" class="form-label">Contact Number:</label>
                             <input type="text" class="form-control" id="contact" v-model="getClientData.contact">
                         </div>

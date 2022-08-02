@@ -16,12 +16,16 @@ class ClientFactory extends Factory
 
         $genderArray = ['male', 'female'];
         $selectedGender = $genderArray[random_int(0, 1)];
+
+
         return [
             'id'=> $this->faker->uuid(),
             'firstName' => $this->faker->firstName(),
             'lastName' => $this->faker->lastName(),
             'birthDate' => $this->faker->date(),
             'gender' => $selectedGender,
+            'fathersName' => $this->faker->firstNameMale().' '.$this->faker->lastName(),
+            'mothersName' => $this->faker->firstNameFemale().' '.$this->faker->lastName(),
             'contact' => $this->faker->phoneNumber(),
             'barangay' => $this->faker->streetAddress(),
             'municipality' => $this->faker->city(),

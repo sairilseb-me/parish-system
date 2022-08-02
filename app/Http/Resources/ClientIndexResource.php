@@ -20,6 +20,8 @@ class ClientIndexResource extends JsonResource
             'lastName' => $this->lastName,
             'birthDate' => $this->birthDate,
             'gender' => $this->gender,
+            'fathersName' => $this->fathersName,
+            'mothersName' => $this->mothersName,
             'contact' => $this->contact,
             'barangay' => $this->barangay,
             'municipality' => $this->municipality,

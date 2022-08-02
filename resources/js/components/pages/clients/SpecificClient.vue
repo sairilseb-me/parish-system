@@ -1,18 +1,23 @@
 <template>
-    <div class="container mt-5 box-shadow" style="width:50%">
-        <div v-if="getClientData">
-            <h3>Client Details</h3>
-            <h5 class="mt-3">Name: {{ getClientData.firstName }} {{ getClientData.lastName }}</h5>
-            <p>Gender: {{ getClientData.gender }}</p>
-            <p>Birthdate: {{ getClientData.birthDate }}</p>
-            <p>Contact: {{ getClientData.contact }}</p>
-            <p>Address: {{ getClientData.barangay }}, {{ getClientData.municipality }} {{ getClientData.province }}</p>
-            <div class="mt-4">
-                <h5>Data Check:</h5>
-                <div class="d-flex box-options">
-                    <router-link class="btn btn-primary" :to="{ name:'add-baptism'}">Add Baptism</router-link>
-                    <router-link class="btn btn-warning" to="#">Add Marriage</router-link>
-                    <router-link class="btn btn-secondary" to="#">Add Burial</router-link>
+    <div class="container mt-5" style="width:50%">
+
+        <div class="card" v-if="getClientData">
+            <div class="card-header">
+                Client's Data
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ getClientData.firstName }} {{ getClientData.lastName }}</h5>
+                <p>Gender: {{ getClientData.gender }}</p>
+                <p class="card-text">Birthdate: {{ getClientData.birthDate }}</p>
+                <p class="card-text">Contact: {{ getClientData.contact }}</p>
+                <p class="card-text">Address: {{ getClientData.barangay }}, {{ getClientData.municipality }} {{ getClientData.province }}</p>
+                <div class="mt-4">
+                    <h5>Data Check:</h5>
+                    <div class="d-flex box-options">
+                        <router-link class="btn btn-primary" :to="{ name:'add-baptism'}">Add Baptism</router-link>
+                        <router-link class="btn btn-warning" to="#">Add Marriage</router-link>
+                        <router-link class="btn btn-secondary" to="#">Add Burial</router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,8 +26,7 @@
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             Loading...
             </button>
-        </div>
-        
+        </div>  
     </div>
 </template>
 

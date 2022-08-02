@@ -12,7 +12,7 @@ class Client extends Model
     use SoftDeletes;
     protected $primarykey = 'id'; 
     protected $keyType = 'string';
-    protected $fillable = ['id', 'firstName', 'lastName', 'birthDate', 'gender', 'contact', 'barangay', 'municipality', 'province'];
+    protected $fillable = ['id', 'firstName', 'lastName', 'birthDate', 'gender', 'fathersName', 'mothersName', 'contact', 'barangay', 'municipality', 'province'];
 
     public function baptism(){
         return $this->belongsTo('App\Baptism', 'client_id');
