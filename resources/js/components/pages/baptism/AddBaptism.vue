@@ -12,9 +12,9 @@
             <h3>Baptism Data:</h3>
             <div class="mb-2">
                 <label for="priest" class="form-label">Officiant:</label>
-                <select name="priest" id="" class="form-select">
-                    <option :value="priest.id" v-for="priest in loadPriestsList.data" :key="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
-                </select>
+                <!-- <select name="priest" id="" class="form-select">
+                    <option :value="priest.id" v-for="priest in loadPriestsList" :key="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
+                </select> -->
             </div>
             
         </div>
@@ -23,14 +23,17 @@
 
 <script>
 
-import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 export default {
     computed: {
         ...mapGetters('client', ['getClientData']),
-        ...mapGetters('priest', ['getPriestsList', 'loadPriestsList']),
+        ...mapGetters('priest', ['loadPriestsList']),
     },
     mounted(){
-        this.getPriestsList
+        this.getPriestsList();
+    },
+    methods: {
+        ...mapActions('priest', ['getPriestsList']),
     }
 }
 </script>

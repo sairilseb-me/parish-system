@@ -5364,10 +5364,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['getClientData'])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('priest', ['getPriestsList', 'loadPriestsList'])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['getClientData'])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('priest', ['loadPriestsList'])),
   mounted: function mounted() {
-    this.getPriestsList;
-  }
+    this.getPriestsList();
+  },
+  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('priest', ['getPriestsList']))
 });
 
 /***/ }),
@@ -5614,10 +5615,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EditPriest: _modals_EditPriest_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   mounted: function mounted() {
-    this.getPriestsList;
+    this.getPriestsList();
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('priest', ['getAddModalStatus', 'getEditModalStatus', 'loadPriestsList', 'getPriestsList'])),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('priest', ['setAddModalStatus', 'setEditModalStatus', 'fetchPriestData', 'deletePriest'])), {}, {
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('priest', ['getAddModalStatus', 'getEditModalStatus', 'loadPriestsList'])),
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('priest', ['setAddModalStatus', 'setEditModalStatus', 'fetchPriestData', 'deletePriest', 'getPriestsList'])), {}, {
     showAddModal: function showAddModal() {
       this.setAddModalStatus(true);
     },
@@ -5965,7 +5966,14 @@ var render = function render() {
     }
   }, [_c("h1", [_vm._v("Add a Baptism Data")]), _vm._v(" "), _c("div", {
     staticClass: "client-data"
-  }, [_c("h3", [_vm._v("Client Data:")]), _vm._v(" "), _c("p", [_vm._v("Name: " + _vm._s(_vm.getClientData.firstName) + " " + _vm._s(_vm.getClientData.lastName))]), _vm._v(" "), _c("p", [_vm._v("Gender: " + _vm._s(_vm.getClientData.gender))]), _vm._v(" "), _c("p", [_vm._v("Address: " + _vm._s(_vm.getClientData.barangay) + " " + _vm._s(_vm.getClientData.municipality) + " " + _vm._s(_vm.getClientData.province))]), _vm._v(" "), _c("p", [_vm._v("Parents: " + _vm._s(_vm.getClientData.fathersName) + " and " + _vm._s(_vm.getClientData.mothersName))])]), _vm._v(" "), _c("div", {
+  }, [_c("h3", [_vm._v("Client Data:")]), _vm._v(" "), _c("p", [_vm._v("Name: " + _vm._s(_vm.getClientData.firstName) + " " + _vm._s(_vm.getClientData.lastName))]), _vm._v(" "), _c("p", [_vm._v("Gender: " + _vm._s(_vm.getClientData.gender))]), _vm._v(" "), _c("p", [_vm._v("Address: " + _vm._s(_vm.getClientData.barangay) + " " + _vm._s(_vm.getClientData.municipality) + " " + _vm._s(_vm.getClientData.province))]), _vm._v(" "), _c("p", [_vm._v("Parents: " + _vm._s(_vm.getClientData.fathersName) + " and " + _vm._s(_vm.getClientData.mothersName))])]), _vm._v(" "), _vm._m(0)]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "baptism-data mt-3"
   }, [_c("h3", [_vm._v("Baptism Data:")]), _vm._v(" "), _c("div", {
     staticClass: "mb-2"
@@ -5974,23 +5982,8 @@ var render = function render() {
     attrs: {
       "for": "priest"
     }
-  }, [_vm._v("Officiant:")]), _vm._v(" "), _c("select", {
-    staticClass: "form-select",
-    attrs: {
-      name: "priest",
-      id: ""
-    }
-  }, _vm._l(_vm.loadPriestsList.data, function (priest) {
-    return _c("option", {
-      key: priest.id,
-      domProps: {
-        value: priest.id
-      }
-    }, [_vm._v(_vm._s(priest.firstName) + " " + _vm._s(priest.lastName))]);
-  }), 0)])])]);
-};
-
-var staticRenderFns = [];
+  }, [_vm._v("Officiant:")])])]);
+}];
 render._withStripped = true;
 
 
@@ -7801,11 +7794,6 @@ __webpack_require__.r(__webpack_exports__);
     getInputErrors: function getInputErrors(state) {
       return state.inputErrors;
     },
-    getPriestsList: function getPriestsList(state) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/priests').then(function (response) {
-        state.priests = response.data;
-      });
-    },
     getPriestData: function getPriestData(state) {
       return state.priest;
     }
@@ -7892,6 +7880,15 @@ __webpack_require__.r(__webpack_exports__);
           sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire('Error', response.data.message, 'error');
         }
       });
+    },
+    getPriestsList: function getPriestsList(state) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/priests').then(function (response) {
+        if (response.status === 200) {
+          console.log(response);
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   },
   actions: {
@@ -7912,6 +7909,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     deletePriest: function deletePriest(context, payload) {
       context.commit('deletePriest', payload);
+    },
+    getPriestsList: function getPriestsList(context) {
+      context.commit('getPriestsList');
     }
   }
 });

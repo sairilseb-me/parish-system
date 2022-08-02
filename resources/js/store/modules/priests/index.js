@@ -23,12 +23,6 @@ export default {
         getInputErrors(state){
             return state.inputErrors;
         },
-        getPriestsList(state){
-            axios.get('api/priests')
-            .then((response)=>{
-                state.priests = response.data;
-            })
-        },
         getPriestData(state){
             return state.priest;
         }
@@ -115,12 +109,21 @@ export default {
                         }
                     })
                 }
-
                 if(response.data.error){
                     Swal.fire('Error', response.data.message, 'error');
                 }
             })
-        }
+        },
+        getPriestsList(state){
+            axios.get('api/priests')
+            .then((response)=>{
+                if(response.status === 200){
+                    console.log(response);
+                }
+            }).catch((err)=>{
+                console.log(err);
+            })
+        },
     },
     actions: {
         setAddModalStatus(context, payload){
@@ -140,6 +143,9 @@ export default {
         },
         deletePriest(context, payload){
             context.commit('deletePriest', payload);
+        },
+        getPriestsList(context){
+            context.commit('getPriestsList');
         }
     }
 }
