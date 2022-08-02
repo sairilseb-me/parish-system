@@ -5364,11 +5364,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['getClientData'])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('priest', ['loadPriestsList'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+    getClientData: 'client/getClientData',
+    getPriestsList: 'priest/getPriestsList',
+    loadPriestList: 'priest/loadPriestsList'
+  })),
   mounted: function mounted() {
-    this.getPriestsList();
+    this.getPriestsList;
   },
-  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('priest', ['getPriestsList']))
+  methods: {}
 });
 
 /***/ }),
@@ -7796,6 +7800,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     getPriestData: function getPriestData(state) {
       return state.priest;
+    },
+    getPriestsList: function getPriestsList(state) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/priests').then(function (response) {
+        if (response.status === 200) {
+          console.log(response.data);
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   },
   mutations: {
@@ -7880,15 +7893,6 @@ __webpack_require__.r(__webpack_exports__);
           sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire('Error', response.data.message, 'error');
         }
       });
-    },
-    getPriestsList: function getPriestsList(state) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/priests').then(function (response) {
-        if (response.status === 200) {
-          console.log(response);
-        }
-      })["catch"](function (err) {
-        console.log(err);
-      });
     }
   },
   actions: {
@@ -7909,9 +7913,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     deletePriest: function deletePriest(context, payload) {
       context.commit('deletePriest', payload);
-    },
-    getPriestsList: function getPriestsList(context) {
-      context.commit('getPriestsList');
     }
   }
 });

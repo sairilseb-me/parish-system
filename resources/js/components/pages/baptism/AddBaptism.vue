@@ -26,14 +26,13 @@
 import {mapGetters, mapActions} from 'vuex';
 export default {
     computed: {
-        ...mapGetters('client', ['getClientData']),
-        ...mapGetters('priest', ['loadPriestsList']),
+        ...mapGetters({getClientData: 'client/getClientData', getPriestsList: 'priest/getPriestsList', loadPriestList: 'priest/loadPriestsList'}),
     },
     mounted(){
-        this.getPriestsList();
+        this.getPriestsList;
     },
     methods: {
-        ...mapActions('priest', ['getPriestsList']),
+       
     }
 }
 </script>

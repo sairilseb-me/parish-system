@@ -25,7 +25,17 @@ export default {
         },
         getPriestData(state){
             return state.priest;
-        }
+        },
+        getPriestsList(state){
+            axios.get('api/priests')
+            .then((response)=>{
+                if(response.status === 200){
+                    console.log(response.data);
+                }
+            }).catch((err)=>{
+                console.log(err);
+            })
+        },
     },
     mutations: {
         setAddModalStatus(state, payload){
@@ -114,16 +124,7 @@ export default {
                 }
             })
         },
-        getPriestsList(state){
-            axios.get('api/priests')
-            .then((response)=>{
-                if(response.status === 200){
-                    console.log(response);
-                }
-            }).catch((err)=>{
-                console.log(err);
-            })
-        },
+        
     },
     actions: {
         setAddModalStatus(context, payload){
@@ -144,8 +145,6 @@ export default {
         deletePriest(context, payload){
             context.commit('deletePriest', payload);
         },
-        getPriestsList(context){
-            context.commit('getPriestsList');
-        }
+       
     }
 }

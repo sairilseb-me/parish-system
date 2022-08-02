@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class PriestController extends Controller
 {
     public function index(){
-        return PriestIndexResource::collection(Priest::paginate(2));
+        return PriestIndexResource::collection(Priest::all());
     }
 
     public function store(Request $request){
