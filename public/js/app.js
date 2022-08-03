@@ -5417,7 +5417,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       searchName: ''
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['loadClients', 'getClientList', 'getAddModalStatus', 'getEditModalStatus'])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['loadClients', 'getAddModalStatus', 'getEditModalStatus'])), {}, {
     reloadClients: function reloadClients() {
       return this.loadClients.data;
     }
@@ -5426,10 +5426,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.loadClients;
   },
   mounted: function mounted() {
-    this.getClientList;
+    this.getClientList();
     this.getResults();
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('client', ['setAddModalStatus', 'getPaginationResult', 'searchClient', 'setEditModalStatus', 'editClient', 'deleteClient'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('client', ['setAddModalStatus', 'getClientList', 'getPaginationResult', 'searchClient', 'setEditModalStatus', 'editClient', 'deleteClient'])), {}, {
     triggerAddModal: function triggerAddModal() {
       this.setAddModalStatus(true);
     },
@@ -5964,15 +5964,24 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "container mt-5",
-    staticStyle: {
-      width: "60%"
-    }
+    staticClass: "container mt-5"
   }, [_c("h1", [_vm._v("Add a Baptism Data")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex"
+  }, [_c("div", {
     staticClass: "client-data"
-  }, [_c("h3", [_vm._v("Client Data:")]), _vm._v(" "), _c("p", [_vm._v("Name: " + _vm._s(_vm.getClientData.firstName) + " " + _vm._s(_vm.getClientData.lastName))]), _vm._v(" "), _c("p", [_vm._v("Gender: " + _vm._s(_vm.getClientData.gender))]), _vm._v(" "), _c("p", [_vm._v("Address: " + _vm._s(_vm.getClientData.barangay) + " " + _vm._s(_vm.getClientData.municipality) + " " + _vm._s(_vm.getClientData.province))]), _vm._v(" "), _c("p", [_vm._v("Parents: " + _vm._s(_vm.getClientData.fathersName) + " and " + _vm._s(_vm.getClientData.mothersName))])]), _vm._v(" "), _c("div", {
-    staticClass: "baptism-data mt-3"
-  }, [_c("h3", [_vm._v("Baptism Data:")]), _vm._v(" "), _vm.loadPriestList ? _c("div", {
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("h3", {
+    staticClass: "card-header"
+  }, [_vm._v("Client Data:")]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", [_c("strong", [_vm._v("Name:")]), _vm._v(" " + _vm._s(_vm.getClientData.firstName) + " " + _vm._s(_vm.getClientData.lastName))]), _vm._v(" "), _c("p", [_c("strong", [_vm._v("Gender:")]), _vm._v(" " + _vm._s(_vm.getClientData.gender))]), _vm._v(" "), _c("p", [_c("strong", [_vm._v("Address:")]), _vm._v(" " + _vm._s(_vm.getClientData.barangay) + " " + _vm._s(_vm.getClientData.municipality) + " " + _vm._s(_vm.getClientData.province))]), _vm._v(" "), _c("p", [_c("strong", [_vm._v("Parents:")]), _vm._v(" " + _vm._s(_vm.getClientData.fathersName) + " and " + _vm._s(_vm.getClientData.mothersName))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "baptism-data card mt-4"
+  }, [_c("h3", {
+    staticClass: "card-header"
+  }, [_vm._v("Baptism Data:")]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_vm.loadPriestList ? _c("div", {
     staticClass: "mb-2"
   }, [_c("label", {
     staticClass: "form-label",
@@ -5992,10 +6001,150 @@ var render = function render() {
         value: priest.id
       }
     }, [_vm._v(_vm._s(priest.firstName) + " " + _vm._s(priest.lastName))]);
-  }), 0)]) : _vm._e()])]);
+  }), 0)]) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7)])])])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "dateBaptised"
+    }
+  }, [_vm._v("Baptismal Date:")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "date",
+      name: "",
+      id: "dateBaptised"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "sponsors"
+    }
+  }, [_vm._v("Sponsors(separated by comma): ")]), _vm._v(" "), _c("textarea", {
+    staticClass: "form-control",
+    attrs: {
+      name: "sponsors",
+      id: "sponsors",
+      cols: "30",
+      rows: "5"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "dated"
+    }
+  }, [_vm._v("Dated:")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "dated"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "seriesOf"
+    }
+  }, [_vm._v("Series Of:")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "seriesOf"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "seriesNumber"
+    }
+  }, [_vm._v("No.:")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "seriesNumber"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "page"
+    }
+  }, [_vm._v("Page:")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "page"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "purpose"
+    }
+  }, [_vm._v("Purpose:")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "purpose"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "mb-3 d-flex justify-content-between"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary btn-back"
+  }, [_vm._v("Back")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary btn-save"
+  }, [_vm._v("Save")])]);
+}];
 render._withStripped = true;
 
 
@@ -7620,11 +7769,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loadClients: function loadClients(state) {
       return state.clients;
     },
-    getClientList: function getClientList(state) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/clients').then(function (response) {
-        return state.clients = response.data;
-      });
-    },
     getClientData: function getClientData(state) {
       return state.client;
     },
@@ -7699,7 +7843,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("api/clients/update-client/".concat(payload.id), payload).then(function (response) {
         if (response.data.success) {
           state.closeEditModal = false;
-          state.getClientList;
+          console.log(state);
           sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire('Success', response.data.message, 'success').then(function (result) {
             if (result.isConfirmed) {
               console.log("Confirmed.");
@@ -7735,6 +7879,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire("Failed", response.data.message, 'error');
         }
       });
+    },
+    getClientList: function getClientList(state) {
+      console.log("Trigger Get Client List");
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/clients').then(function (response) {
+        return state.clients = response.data;
+      });
     }
   },
   actions: {
@@ -7746,6 +7896,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     addClient: function addClient(context, payload) {
       context.commit('addClient', payload);
+      context.commit('getClientList');
     },
     getPaginationResult: function getPaginationResult(context, payload) {
       context.commit('getPaginationResult', payload);
@@ -7758,9 +7909,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateClient: function updateClient(context, payload) {
       context.commit('updateClient', payload);
+      context.commit('getClientList');
     },
     deleteClient: function deleteClient(context, payload) {
       context.commit('deleteClient', payload);
+      context.commit('getClientList');
+    },
+    getClientList: function getClientList(context, payload) {
+      context.commit('getClientList', payload);
     }
   }
 });
@@ -7810,7 +7966,7 @@ __webpack_require__.r(__webpack_exports__);
       return state.priest;
     },
     getPriestsList: function getPriestsList(state) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/priests').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('http://127.0.0.1:8000/api/priests').then(function (response) {
         state.priests = response.data;
         console.log(state.priests);
       });
@@ -13040,7 +13196,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.client-data[data-v-1cf07ca4]{\n    border: 1px solid #333;\n    padding: 2rem;\n    border-radius: 15px;\n}\n.baptism-data[data-v-1cf07ca4]{\n    border: 1px solid #333;\n    padding: 2rem;\n    border-radius: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.client-data[data-v-1cf07ca4]{\n    width: 30%;\n    padding: 2rem;\n}\n.baptism-data[data-v-1cf07ca4]{\n    width: 70%;\n    margin-left: 1.5rem;\n}\nbutton[data-v-1cf07ca4]{\n    width: 150px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -68268,7 +68424,7 @@ var Calendar = vue__WEBPACK_IMPORTED_MODULE_0__["default"].component("ToastUICal
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\laravel_vue\\\\test2\\\\parish-system"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\laravel_vue\\\\test2\\\\parish-system","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"/Applications/XAMPP/xamppfiles/htdocs/sibunag_system/sibunag_parish_system","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

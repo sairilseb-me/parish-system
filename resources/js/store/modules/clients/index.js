@@ -15,10 +15,7 @@ export default {
         loadClients(state){
             return state.clients
         },
-        getClientList(state){
-            axios.get('api/clients')
-            .then((response)=> state.clients = response.data)
-        },
+       
         getClientData(state){
             return state.client;
         },
@@ -91,7 +88,7 @@ export default {
             .then((response)=>{
                 if(response.data.success){
                     state.closeEditModal = false;
-                    state.getClientList;
+                    console.log(state);
                     Swal.fire('Success', response.data.message, 'success')
                     .then((result)=>{
                         if(result.isConfirmed){
@@ -126,7 +123,12 @@ export default {
                 Swal.fire("Failed", response.data.message, 'error');
             }
         })
-       }
+       },
+       getClientList(state){
+        console.log("Trigger Get Client List");
+        axios.get('api/clients')
+        .then((response)=> state.clients = response.data)
+    },
     },
     actions: {
         setAddModalStatus(context, payload){
@@ -137,6 +139,7 @@ export default {
         },
         addClient(context, payload){
             context.commit('addClient', payload);
+            context.commit('getClientList');
         },
         getPaginationResult(context, payload){
             context.commit('getPaginationResult', payload);
@@ -149,9 +152,14 @@ export default {
         },
         updateClient(context, payload){
             context.commit('updateClient', payload);
+            context.commit('getClientList');
         },
         deleteClient(context, payload){
             context.commit('deleteClient', payload);
+            context.commit('getClientList');
+        },
+        getClientList(context,payload){
+            context.commit('getClientList', payload);
         }
     }
 }

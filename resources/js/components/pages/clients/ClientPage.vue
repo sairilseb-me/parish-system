@@ -54,7 +54,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('client', ['loadClients', 'getClientList', 'getAddModalStatus', 'getEditModalStatus']),
+        ...mapGetters('client', ['loadClients', 'getAddModalStatus', 'getEditModalStatus']),
         reloadClients(){
             return this.loadClients.data
         }
@@ -63,11 +63,11 @@ export default {
         this.loadClients;
     },
     mounted() {
-        this.getClientList;
+        this.getClientList();
         this.getResults();
     },
     methods: {
-        ...mapActions('client', ['setAddModalStatus', 'getPaginationResult', 'searchClient', 'setEditModalStatus', 'editClient', 'deleteClient']),
+        ...mapActions('client', ['setAddModalStatus', 'getClientList', 'getPaginationResult', 'searchClient', 'setEditModalStatus', 'editClient', 'deleteClient']),
         triggerAddModal(){
             this.setAddModalStatus(true);
         },
