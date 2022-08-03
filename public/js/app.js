@@ -5994,14 +5994,29 @@ var render = function render() {
       name: "priest",
       id: ""
     }
-  }, _vm._l(_vm.loadPriestList.data, function (priest) {
+  }, [_c("option", {
+    attrs: {
+      selected: ""
+    }
+  }, [_vm._v("Select a Priest")]), _vm._v(" "), _vm._l(_vm.loadPriestList.data, function (priest) {
     return _c("option", {
       key: priest.id,
       domProps: {
         value: priest.id
       }
     }, [_vm._v(_vm._s(priest.firstName) + " " + _vm._s(priest.lastName))]);
-  }), 0)]) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7)])])])]);
+  })], 2)]) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c("div", {
+    staticClass: "mb-3 d-flex justify-content-between"
+  }, [_c("router-link", {
+    staticClass: "btn btn-secondary btn-back",
+    attrs: {
+      to: {
+        name: "clients"
+      }
+    }
+  }, [_vm._v("Back")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary btn-save"
+  }, [_vm._v("Save")])], 1)])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -6133,17 +6148,6 @@ var staticRenderFns = [function () {
       id: "purpose"
     }
   })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "mb-3 d-flex justify-content-between"
-  }, [_c("button", {
-    staticClass: "btn btn-secondary btn-back"
-  }, [_vm._v("Back")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary btn-save"
-  }, [_vm._v("Save")])]);
 }];
 render._withStripped = true;
 
@@ -13196,7 +13200,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.client-data[data-v-1cf07ca4]{\n    width: 30%;\n    padding: 2rem;\n}\n.baptism-data[data-v-1cf07ca4]{\n    width: 70%;\n    margin-left: 1.5rem;\n}\nbutton[data-v-1cf07ca4]{\n    width: 150px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.client-data[data-v-1cf07ca4]{\n    width: 30%;\n    padding: 2rem;\n}\n.baptism-data[data-v-1cf07ca4]{\n    width: 70%;\n    margin-left: 1.5rem;\n}\nbutton[data-v-1cf07ca4]{\n    width: 150px;\n}\na[data-v-1cf07ca4]{\n    width: 150px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

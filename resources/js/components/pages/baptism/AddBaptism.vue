@@ -19,6 +19,7 @@
                     <div class="mb-2" v-if="loadPriestList">
                         <label for="priest" class="form-label">Officiant:</label>
                         <select name="priest" id="" class="form-select">
+                            <option selected>Select a Priest</option>
                             <option :value="priest.id" v-for="priest in loadPriestList.data" :key="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
                         </select>
                     </div>
@@ -51,7 +52,7 @@
                         <input type="text" id="purpose" class="form-control">
                     </div>
                     <div class="mb-3 d-flex justify-content-between">
-                        <button class="btn btn-secondary btn-back">Back</button>
+                        <router-link class="btn btn-secondary btn-back" :to="{name: 'clients'}">Back</router-link>
                         <button class="btn btn-primary btn-save">Save</button>
                     </div>
                 </div>
@@ -88,6 +89,10 @@ export default {
     }
 
     button{
+        width: 150px;
+    }
+
+    a{
         width: 150px;
     }
 </style>
