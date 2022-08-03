@@ -10,11 +10,11 @@
         </div>  
         <div class="baptism-data mt-3">
             <h3>Baptism Data:</h3>
-            <div class="mb-2">
+            <div class="mb-2" v-if="loadPriestList">
                 <label for="priest" class="form-label">Officiant:</label>
-                <!-- <select name="priest" id="" class="form-select">
-                    <option :value="priest.id" v-for="priest in loadPriestsList" :key="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
-                </select> -->
+                <select name="priest" id="" class="form-select" >
+                    <option :value="priest.id" v-for="priest in loadPriestList.data" :key="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
+                </select>
             </div>
             
         </div>
@@ -28,7 +28,7 @@ export default {
     computed: {
         ...mapGetters({getClientData: 'client/getClientData', getPriestsList: 'priest/getPriestsList', loadPriestList: 'priest/loadPriestsList'}),
     },
-    mounted(){
+    created(){
         this.getPriestsList;
     },
     methods: {

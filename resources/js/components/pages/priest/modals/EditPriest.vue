@@ -42,7 +42,7 @@
 import {mapActions, mapGetters} from 'vuex';
 export default {
     mounted() {
-        this.getPriestData
+        this.getPriestData;
     },
    computed: {
         ...mapGetters('priest', ['getPriestData'])

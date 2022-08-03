@@ -40,13 +40,13 @@ export default {
         EditPriest,
     },
     mounted() {
-        this.getPriestsList();
+        this.getPriestsList;
     },
    computed: {
-        ...mapGetters('priest', ['getAddModalStatus','getEditModalStatus', 'loadPriestsList']),
+        ...mapGetters('priest', ['getAddModalStatus','getEditModalStatus', 'loadPriestsList', 'getPriestsList']),
    },
    methods: {
-        ...mapActions('priest', ['setAddModalStatus', 'setEditModalStatus', 'fetchPriestData', 'deletePriest', 'getPriestsList']),
+        ...mapActions('priest', ['setAddModalStatus', 'setEditModalStatus', 'fetchPriestData', 'deletePriest']),
         showAddModal(){
             this.setAddModalStatus(true);
         },

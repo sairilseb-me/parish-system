@@ -29,11 +29,8 @@ export default {
         getPriestsList(state){
             axios.get('api/priests')
             .then((response)=>{
-                if(response.status === 200){
-                    console.log(response.data);
-                }
-            }).catch((err)=>{
-                console.log(err);
+                state.priests = response.data;
+                console.log(state.priests);
             })
         },
     },
