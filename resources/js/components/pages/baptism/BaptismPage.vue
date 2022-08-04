@@ -13,10 +13,31 @@
                             <th>View</th>
                         </tr>
                     </thead>
+                    <div v-if="!loadBaptismList.data">
+                        <button class="btn btn-primary" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                    </div>
+                    <tbody v-else>
+                        <tr v-for="baptism in loadBaptismList.data" :key="baptism.id">
+                            
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
 </template>
+
+<script>
+
+import {mapGetters, mapActions} from 'vuex';
+export default {
+    computed: {
+        ...mapGetters('baptism', ['getBaptismList', 'loadBaptismList']),
+    }
+}
+</script>
 
 <style scoped>
     .main-body{

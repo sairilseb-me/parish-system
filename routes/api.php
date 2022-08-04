@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BaptismController;
 use App\Http\Controllers\Api\ClientControllers;
 use App\Http\Controllers\Api\PriestController;
 use Illuminate\Http\Request;
@@ -35,3 +36,7 @@ Route::post('/priests/add-priest', [PriestController::class, 'store']);
 Route::get('/priests/specific-data/{id}', [PriestController::class, 'edit']);
 Route::post('/priests/update-priest', [PriestController::class, 'update']);
 Route::post('/priests/delete-priest/{id}', [PriestController::class, 'delete']);
+
+//baptism Routes
+Route::get('/baptism', [BaptismController::class, 'index']);
+Route::post('/baptism/add-baptism', [BaptismController::class, 'store']);

@@ -12,7 +12,7 @@ class Baptism extends Model
     use SoftDeletes;
 
     protected $cast = ['sponsors'=>'array'];
-    protected $fillable = ['fathers_name', 'mothers_name', 'baptised_date', 'priest', 'sponsors', 'dated', 'series_of', 'book_number', 'page', 'purpose'];
+    protected $fillable = ['client_id','baptised_date', 'priest', 'sponsors', 'dated', 'series_of', 'book_number', 'page', 'purpose'];
 
     public function priest(){
         return $this->hasOne(Priest::class);

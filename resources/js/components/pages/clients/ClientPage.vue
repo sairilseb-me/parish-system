@@ -7,7 +7,7 @@
             <input class="me-2 px-3 w-25" type="search" placeholder="Search.." @keyup="getSearchClient" v-model="searchName">
         </div>
         <div v-if="loadClients">
-            <table class="table table-hover">
+            <table class="table table-bordered table-hover mt-3">
                 <thead>
                     <tr>
                         <th>Full Name</th>

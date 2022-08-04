@@ -5377,6 +5377,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('baptism', ['getBaptismList', 'loadBaptismList']))
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pages/clients/ClientPage.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pages/clients/ClientPage.vue?vue&type=script&lang=js& ***!
@@ -6170,7 +6195,15 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", {
+    staticClass: "container mt-5"
+  }, [_vm._m(0), _vm._v(" "), _c("div", [_c("table", {
+    staticClass: "table table-striped mt-3"
+  }, [_vm._m(1), _vm._v(" "), !_vm.loadBaptismList.data ? _c("div", [_vm._m(2)]) : _c("tbody", _vm._l(_vm.loadBaptismList.data, function (baptism) {
+    return _c("tr", {
+      key: baptism.id
+    });
+  }), 0)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -6178,8 +6211,6 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "container mt-5"
-  }, [_c("div", {
     staticClass: "d-flex flex-row justify-content-end"
   }, [_c("input", {
     staticClass: "me-2 px-3 py-2 w-25",
@@ -6187,9 +6218,29 @@ var staticRenderFns = [function () {
       type: "search",
       placeholder: "Search.."
     }
-  })]), _vm._v(" "), _c("div", [_c("table", {
-    staticClass: "table table-striped mt-3"
-  }, [_c("thead", [_c("tr", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Address")]), _vm._v(" "), _c("th", [_vm._v("Date Baptized")]), _vm._v(" "), _c("th", [_vm._v("View")])])])])])]);
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Address")]), _vm._v(" "), _c("th", [_vm._v("Date Baptized")]), _vm._v(" "), _c("th", [_vm._v("View")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "button",
+      disabled: ""
+    }
+  }, [_c("span", {
+    staticClass: "spinner-border spinner-border-sm",
+    attrs: {
+      role: "status",
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                    Loading...\n                ")]);
 }];
 render._withStripped = true;
 
@@ -6273,7 +6324,7 @@ var render = function render() {
       }
     }
   })]), _vm._v(" "), _vm.loadClients ? _c("div", [_c("table", {
-    staticClass: "table table-hover"
+    staticClass: "table table-bordered table-hover mt-3"
   }, [_vm._m(0), _vm._v(" "), _vm._l(_vm.reloadClients, function (client) {
     return _c("tbody", {
       key: client.id
@@ -7722,15 +7773,94 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _store_modules_clients_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/modules/clients/index.js */ "./resources/js/store/modules/clients/index.js");
 /* harmony import */ var _store_modules_priests_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/modules/priests/index.js */ "./resources/js/store/modules/priests/index.js");
+/* harmony import */ var _store_modules_baptism_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/modules/baptism/index */ "./resources/js/store/modules/baptism/index.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   modules: {
     client: _store_modules_clients_index_js__WEBPACK_IMPORTED_MODULE_0__["default"],
-    priest: _store_modules_priests_index_js__WEBPACK_IMPORTED_MODULE_1__["default"]
+    priest: _store_modules_priests_index_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+    baptism: _store_modules_baptism_index__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   state: {
     count: 1
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/baptism/index.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/store/modules/baptism/index.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: {
+    baptisms: null,
+    baptism: null,
+    inputErrors: [],
+    errors: null
+  },
+  getters: {
+    getBaptismList: function getBaptismList(state) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('http://127.0.0.1:8000/api/baptism').then(function (response) {
+        if (response.status === 200) {
+          state.baptisms = response.data;
+        }
+      });
+    },
+    loadBaptismList: function loadBaptismList(state) {
+      return state.baptisms;
+    }
+  },
+  mutations: {
+    addbaptism: function addbaptism(state, payload) {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('http://127.0.0.1:8000/api/baptism/add-baptism').then(function (response) {
+        if (response.data.inputErrors) {
+          state.inputErrors = [];
+          var inputErrors = response.data.message;
+
+          for (var key in inputErrors) {
+            state.inputErrors.push(inputErrors[key][0]);
+          }
+        }
+
+        if (response.data.error) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire("Error", response.data.message, 'error');
+        }
+
+        if (response.data.success) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire("Success", response.data.message, 'success').then(function (result) {
+            if (result.isConfirmed) {
+              _this.$route.push({
+                name: 'baptism'
+              });
+            }
+          });
+        }
+      });
+    }
+  },
+  actions: {
+    addbaptism: function addbaptism(context, payload) {
+      context.commit('addbaptism', payload);
+    }
   }
 });
 
@@ -36007,17 +36137,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _BaptismPage_vue_vue_type_template_id_75d6583a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaptismPage.vue?vue&type=template&id=75d6583a&scoped=true& */ "./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=template&id=75d6583a&scoped=true&");
-/* harmony import */ var _BaptismPage_vue_vue_type_style_index_0_id_75d6583a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaptismPage.vue?vue&type=style&index=0&id=75d6583a&scoped=true&lang=css& */ "./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=style&index=0&id=75d6583a&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _BaptismPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaptismPage.vue?vue&type=script&lang=js& */ "./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=script&lang=js&");
+/* harmony import */ var _BaptismPage_vue_vue_type_style_index_0_id_75d6583a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BaptismPage.vue?vue&type=style&index=0&id=75d6583a&scoped=true&lang=css& */ "./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=style&index=0&id=75d6583a&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 ;
 
 
 /* normalize component */
 
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  script,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _BaptismPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _BaptismPage_vue_vue_type_template_id_75d6583a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
   _BaptismPage_vue_vue_type_template_id_75d6583a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -36428,6 +36560,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddBaptism_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddBaptism.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pages/baptism/AddBaptism.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddBaptism_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BaptismPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BaptismPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pages/baptism/BaptismPage.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BaptismPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -68428,7 +68576,7 @@ var Calendar = vue__WEBPACK_IMPORTED_MODULE_0__["default"].component("ToastUICal
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"/Applications/XAMPP/xamppfiles/htdocs/sibunag_system/sibunag_parish_system","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\laravel_vue\\\\test2\\\\parish-system"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\laravel_vue\\\\test2\\\\parish-system","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

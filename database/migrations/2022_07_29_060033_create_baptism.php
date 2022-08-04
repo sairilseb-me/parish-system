@@ -17,8 +17,6 @@ class CreateBaptism extends Migration
             $table->id();
             $table->uuid('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
-            $table->string('fathers_name');
-            $table->string('mothers_name');
             $table->date('baptised_date');
             $table->string('priest');
             $table->json('sponsors');
