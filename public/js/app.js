@@ -5364,6 +5364,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: function state() {
+    return {
+      bap: {
+        client_id: this.getClientData.id,
+        baptised_date: null,
+        priest: 'none',
+        sponsors: '',
+        dated: null,
+        series_of: '',
+        book_number: '',
+        page: null,
+        purpose: ''
+      }
+    };
+  },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
     getClientData: 'client/getClientData',
     getPriestsList: 'priest/getPriestsList',
@@ -5372,7 +5387,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.getPriestsList;
   },
-  methods: {}
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('baptism', ['addBaptism'])), {}, {
+    triggerAddBaptism: function triggerAddBaptism() {
+      this.addBaptism(this.bap);
+    }
+  })
 });
 
 /***/ }),
@@ -6014,14 +6033,32 @@ var render = function render() {
       "for": "priest"
     }
   }, [_vm._v("Officiant:")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.bap.priest,
+      expression: "bap.priest"
+    }],
     staticClass: "form-select",
     attrs: {
       name: "priest",
       id: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.bap, "priest", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
   }, [_c("option", {
-    attrs: {
-      selected: ""
+    domProps: {
+      value: _vm.none
     }
   }, [_vm._v("Select a Priest")]), _vm._v(" "), _vm._l(_vm.loadPriestList.data, function (priest) {
     return _c("option", {
@@ -6030,7 +6067,213 @@ var render = function render() {
         value: priest.id
       }
     }, [_vm._v(_vm._s(priest.firstName) + " " + _vm._s(priest.lastName))]);
-  })], 2)]) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c("div", {
+  })], 2)]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "dateBaptised"
+    }
+  }, [_vm._v("Baptismal Date:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.bap.baptised_date,
+      expression: "bap.baptised_date"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date",
+      name: "",
+      id: "dateBaptised"
+    },
+    domProps: {
+      value: _vm.bap.baptised_date
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.bap, "baptised_date", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "sponsors"
+    }
+  }, [_vm._v("Sponsors(separated by comma): ")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.bap.sponsors,
+      expression: "bap.sponsors"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      name: "sponsors",
+      id: "sponsors",
+      cols: "30",
+      rows: "5"
+    },
+    domProps: {
+      value: _vm.bap.sponsors
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.bap, "sponsors", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "dated"
+    }
+  }, [_vm._v("Dated:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.bap.dated,
+      expression: "bap.dated"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "dated"
+    },
+    domProps: {
+      value: _vm.bap.dated
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.bap, "dated", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "seriesOf"
+    }
+  }, [_vm._v("Series Of:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.bap.series_of,
+      expression: "bap.series_of"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "seriesOf"
+    },
+    domProps: {
+      value: _vm.bap.series_of
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.bap, "series_of", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "bookNumber"
+    }
+  }, [_vm._v("No.:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.bap.book_number,
+      expression: "bap.book_number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "bookNumber"
+    },
+    domProps: {
+      value: _vm.bap.book_number
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.bap, "book_number", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-2"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "page"
+    }
+  }, [_vm._v("Page:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.bap.page,
+      expression: "bap.page"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "page"
+    },
+    domProps: {
+      value: _vm.bap.page
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.bap, "page", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "purpose"
+    }
+  }, [_vm._v("Purpose:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.bap.purpose,
+      expression: "bap.purpose"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "purpose"
+    },
+    domProps: {
+      value: _vm.bap.purpose
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.bap, "purpose", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3 d-flex justify-content-between"
   }, [_c("router-link", {
     staticClass: "btn btn-secondary btn-back",
@@ -6040,140 +6283,14 @@ var render = function render() {
       }
     }
   }, [_vm._v("Back")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary btn-save"
+    staticClass: "btn btn-primary btn-save",
+    on: {
+      click: _vm.triggerAddBaptism
+    }
   }, [_vm._v("Save")])], 1)])])])]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "mb-2"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "dateBaptised"
-    }
-  }, [_vm._v("Baptismal Date:")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "date",
-      name: "",
-      id: "dateBaptised"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "mb-2"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "sponsors"
-    }
-  }, [_vm._v("Sponsors(separated by comma): ")]), _vm._v(" "), _c("textarea", {
-    staticClass: "form-control",
-    attrs: {
-      name: "sponsors",
-      id: "sponsors",
-      cols: "30",
-      rows: "5"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "mb-2"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "dated"
-    }
-  }, [_vm._v("Dated:")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "dated"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "mb-2"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "seriesOf"
-    }
-  }, [_vm._v("Series Of:")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "seriesOf"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "mb-2"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "seriesNumber"
-    }
-  }, [_vm._v("No.:")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "seriesNumber"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "mb-2"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "page"
-    }
-  }, [_vm._v("Page:")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "page"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "purpose"
-    }
-  }, [_vm._v("Purpose:")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "purpose"
-    }
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -7828,10 +7945,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mutations: {
-    addbaptism: function addbaptism(state, payload) {
+    addBaptism: function addBaptism(state, payload) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('http://127.0.0.1:8000/api/baptism/add-baptism').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('http://127.0.0.1:8000/api/baptism/add-baptism', payload).then(function (response) {
         if (response.data.inputErrors) {
           state.inputErrors = [];
           var inputErrors = response.data.message;
@@ -7858,8 +7975,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   actions: {
-    addbaptism: function addbaptism(context, payload) {
-      context.commit('addbaptism', payload);
+    addBaptism: function addBaptism(context, payload) {
+      context.commit('addBaptism', payload);
     }
   }
 });
@@ -68576,7 +68693,7 @@ var Calendar = vue__WEBPACK_IMPORTED_MODULE_0__["default"].component("ToastUICal
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\laravel_vue\\\\test2\\\\parish-system"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\laravel_vue\\\\test2\\\\parish-system","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"/Applications/XAMPP/xamppfiles/htdocs/sibunag_system/sibunag_parish_system","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

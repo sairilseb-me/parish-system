@@ -23,8 +23,8 @@ export default{
         },
     },
     mutations: {
-        addbaptism(state, payload){
-            axios.post('http://127.0.0.1:8000/api/baptism/add-baptism')
+        addBaptism(state, payload){
+            axios.post('http://127.0.0.1:8000/api/baptism/add-baptism', payload)
             .then((response)=>{
                 if(response.data.inputErrors){
                     state.inputErrors = [];
@@ -50,8 +50,8 @@ export default{
         }
     },
     actions: {
-        addbaptism(context, payload){
-            context.commit('addbaptism', payload);
+        addBaptism(context, payload){
+            context.commit('addBaptism', payload);
         }
     }
 }

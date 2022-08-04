@@ -15,6 +15,6 @@ class Client extends Model
     protected $fillable = ['id', 'firstName', 'lastName', 'birthDate', 'gender', 'fathersName', 'mothersName', 'contact', 'barangay', 'municipality', 'province'];
 
     public function baptism(){
-        return $this->belongsTo('App\Baptism', 'client_id');
+        return $this->belongsTo('App\Models\Baptism', 'client_id');
     }
 }

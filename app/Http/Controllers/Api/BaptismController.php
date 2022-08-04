@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BaptismIndexResource;
 use App\Models\Baptism;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class BaptismController extends Controller
 {
     public function index(){
-        return BaptismIndexResource::collection(Baptism::all());
+        $baptism = Baptism::where('client_id', '=', '0da3efb4-95f6-33d1-b246-d828a8a986e6')->get();
+        return $baptism;
     }
 
     public function store(Request $request){

@@ -13,6 +13,7 @@ class Baptism extends Model
 
     protected $cast = ['sponsors'=>'array'];
     protected $fillable = ['client_id','baptised_date', 'priest', 'sponsors', 'dated', 'series_of', 'book_number', 'page', 'purpose'];
+    protected $table = 'baptism';
 
     public function priest(){
         return $this->hasOne(Priest::class);

@@ -20,7 +20,7 @@ class CreateBaptism extends Migration
             $table->date('baptised_date');
             $table->string('priest');
             $table->json('sponsors');
-            $table->date('dated');
+            $table->text('dated');
             $table->text('series_of');
             $table->text('book_number');
             $table->integer('page');
