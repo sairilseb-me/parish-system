@@ -18,38 +18,38 @@
                 <div class="card-body">
                     <div class="mb-2" v-if="loadPriestList">
                         <label for="priest" class="form-label">Officiant:</label>
-                        <select name="priest" id="" class="form-select" v-model="bap.priest">
-                            <option :value="none">Select a Priest</option>
+                        <select name="priest" id="" class="form-select" ref="priest">
+                            <option value="none">Select a Priest</option>
                             <option :value="priest.id" v-for="priest in loadPriestList.data" :key="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
                         </select>
                     </div>
                     <div class="mb-2">
                         <label for="dateBaptised" class="form-label">Baptismal Date:</label>
-                        <input type="date" name="" id="dateBaptised" class="form-control" v-model="bap.baptised_date">
+                        <input type="date" name="" id="dateBaptised" class="form-control" ref="dateBap">
                     </div>
                     <div class="mb-2">
                         <label for="sponsors" class="form-label">Sponsors(separated by comma): </label>
-                        <textarea name="sponsors" id="sponsors" class="form-control" cols="30" rows="5" v-model="bap.sponsors"></textarea>
+                        <textarea name="sponsors" id="sponsors" class="form-control" cols="30" rows="5" ref="sponsors"></textarea>
                     </div>
                     <div class="mb-2">
                         <label for="dated" class="form-label">Dated:</label>
-                        <input type="text" id="dated" class="form-control" v-model="bap.dated">
+                        <input type="text" id="dated" class="form-control" ref="dated">
                     </div>
                     <div class="mb-2">
                         <label for="seriesOf" class="form-label">Series Of:</label>
-                        <input type="text" id="seriesOf" class="form-control" v-model="bap.series_of">
+                        <input type="text" id="seriesOf" class="form-control" ref="seriesOf">
                     </div>
                     <div class="mb-2">
                         <label for="bookNumber" class="form-label">No.:</label>
-                        <input type="text" id="bookNumber" class="form-control" v-model="bap.book_number">
+                        <input type="text" id="bookNumber" class="form-control" ref="bookNumber">
                     </div>
                     <div class="mb-2">
                         <label for="page" class="form-label">Page:</label>
-                        <input type="text" id="page" class="form-control" v-model="bap.page">
+                        <input type="text" id="page" class="form-control" ref="page">
                     </div>
                     <div class="mb-3">
                         <label for="purpose" class="form-label">Purpose:</label>
-                        <input type="text" id="purpose" class="form-control" v-model="bap.purpose">
+                        <input type="text" id="purpose" class="form-control" ref="purpose">
                     </div>
                     <div class="mb-3 d-flex justify-content-between">
                         <router-link class="btn btn-secondary btn-back" :to="{name: 'clients'}">Back</router-link>
@@ -89,7 +89,7 @@ export default {
     methods: {
        ...mapActions('baptism', ['addBaptism']),
        triggerAddBaptism(){
-        this.addBaptism(this.bap);
+            console.log(this.$refs.priest.value);
        }
     }
 }
