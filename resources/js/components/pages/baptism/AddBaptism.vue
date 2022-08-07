@@ -18,9 +18,9 @@
                 <div class="card-body">
                     <div class="mb-2" v-if="loadPriestList">
                         <label for="priest" class="form-label">Officiant:</label>
-                        <select name="priest" id="" class="form-select" ref="priest">
-                            <option value="none">Select a Priest</option>
-                            <option :value="priest.id" v-for="priest in loadPriestList.data" :key="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
+                        
+                        <select name="priest" id="" class="form-select" ref="officiant">
+                            <option v-for="priest in loadPriestList.data" :key="priest.id" :value="priest.id">{{ priest.firstName }} {{ priest.lastName }}</option>
                         </select>
                     </div>
                     <div class="mb-2">
@@ -65,12 +65,12 @@
 
 import {mapGetters, mapActions} from 'vuex';
 export default {
-    state(){
+    data(){
         return {
             bap: {
-                client_id: this.getClientData.id,
+                client_id: '',
                 baptised_date: null,
-                priest: 'none',
+                priest: 0,
                 sponsors: '',
                 dated: null,
                 series_of: '',
@@ -89,7 +89,17 @@ export default {
     methods: {
        ...mapActions('baptism', ['addBaptism']),
        triggerAddBaptism(){
-            console.log(this.$refs.priest.value);
+            this.bap.client_id = this.getClientData.id;
+            this.bap.priest = parseInt(this.$refs.officiant.value);
+            this.bap.baptised_date = this.$refs.dateBap.value;
+            this.bap.sponsors = this.$refs.sponsors.value;
+            this.bap.dated = this.$refs.dated.value;
+            this.bap.series_of = this.$refs.seriesOf.value;
+            this.bap.book_number = this.$refs.bookNumber.value;
+            this.bap.page = parseInt(this.$refs.page.value);
+            this.bap.purpose = this.$refs.purpose.value;
+
+            this.addBaptism(this.bap);
        }
     }
 }

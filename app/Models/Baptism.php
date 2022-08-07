@@ -11,15 +11,14 @@ class Baptism extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $cast = ['sponsors'=>'array'];
-    protected $fillable = ['client_id','baptised_date', 'priest', 'sponsors', 'dated', 'series_of', 'book_number', 'page', 'purpose'];
+    protected $fillable = ['client_id','baptised_date', 'priest_id', 'sponsors', 'dated', 'series_of', 'book_number', 'page', 'purpose'];
     protected $table = 'baptism';
 
     public function priest(){
-        return $this->hasOne(Priest::class);
+        return $this->hasMany(Priest::class);
     }
 
     public function client(){
-        return $this->hasMany(Client::class);
+        return $this->belongsTo(Client::class);
     }
 }

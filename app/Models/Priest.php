@@ -13,6 +13,6 @@ class Priest extends Model
     protected $fillable = ['title','firstName', 'lastName'];
 
     public function baptism(){
-        return $this->hasMany(Baptism::class);
+        return $this->hasMany(Baptism::class, 'priest_id');
     }
 }

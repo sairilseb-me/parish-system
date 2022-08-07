@@ -26,6 +26,11 @@ export default{
         addBaptism(state, payload){
             axios.post('http://127.0.0.1:8000/api/baptism/add-baptism', payload)
             .then((response)=>{
+
+                if(response){
+                    console.log(response);
+                }
+
                 if(response.data.inputErrors){
                     state.inputErrors = [];
                     const inputErrors = response.data.message;

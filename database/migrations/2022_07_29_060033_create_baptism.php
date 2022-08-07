@@ -20,7 +20,7 @@ class CreateBaptism extends Migration
             $table->date('baptised_date');
             $table->unsignedBigInteger('priest_id');
             $table->foreign('priest_id')->references('id')->on('priests');
-            $table->json('sponsors');
+            $table->text('sponsors');
             $table->text('dated');
             $table->text('series_of');
             $table->text('book_number');
