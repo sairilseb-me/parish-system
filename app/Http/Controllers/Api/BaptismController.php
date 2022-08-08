@@ -8,16 +8,19 @@ use App\Models\Baptism;
 use App\Models\Client;
 use App\Models\Priest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class BaptismController extends Controller
 {
     public function index(){
-        $baptism = Baptism::where('client_id', '=', '0da3efb4-95f6-33d1-b246-d828a8a986e6')->get();
-        return $baptism;
+        return DB::table('clients')->join('baptism', function($j){
+            $j->on('clients.id', '=', 'baptism.client_id');
+        })->get();
     }
 
     public function store(Request $request){
+       
         $validator = Validator::make($request->all(), [
             'client_id' => 'required|string',
             'baptised_date' => 'required|date',

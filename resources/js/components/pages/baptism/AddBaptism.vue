@@ -90,7 +90,7 @@ export default {
        ...mapActions('baptism', ['addBaptism']),
        triggerAddBaptism(){
             this.bap.client_id = this.getClientData.id;
-            this.bap.priest = parseInt(this.$refs.officiant.value);
+            this.bap.priest_id = parseInt(this.$refs.officiant.value);
             this.bap.baptised_date = this.$refs.dateBap.value;
             this.bap.sponsors = this.$refs.sponsors.value;
             this.bap.dated = this.$refs.dated.value;
@@ -98,8 +98,7 @@ export default {
             this.bap.book_number = this.$refs.bookNumber.value;
             this.bap.page = parseInt(this.$refs.page.value);
             this.bap.purpose = this.$refs.purpose.value;
-
-            this.addBaptism(this.bap);
+            this.addBaptism(this.bap)
        }
     }
 }

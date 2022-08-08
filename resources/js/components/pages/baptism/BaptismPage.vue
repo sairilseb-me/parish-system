@@ -14,7 +14,7 @@
                         </tr>
                     </thead>
                     <div v-if="!loadBaptismList.data">
-                        <button class="btn btn-primary" type="button" disabled>
+                        <button class="btn btn-primary mt-3" type="button" disabled>
                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             Loading...
                         </button>
