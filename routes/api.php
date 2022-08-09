@@ -40,4 +40,4 @@ Route::post('/priests/delete-priest/{id}', [PriestController::class, 'delete']);
 //baptism Routes
 Route::get('/baptism', [BaptismController::class, 'index']);
 Route::post('/baptism/add-baptism', [BaptismController::class, 'store']);
-Route::get('/baptism/search-client/{id}', [BaptismController::class, 'searchClientBaptism']);
+Route::get('/baptism/specific-baptism/{id}', [BaptismController::class, 'searchSpecificBaptism']);
