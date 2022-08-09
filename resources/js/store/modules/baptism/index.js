@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import router from '../../../routes.js'
 
 export default{
     namespaced: true,
@@ -15,6 +16,7 @@ export default{
             .then((response)=>{
                 if(response.status === 200){
                     state.baptisms = response.data;
+                    console.log(state.baptisms);
                 }
             });
         },
@@ -42,7 +44,7 @@ export default{
                     Swal.fire("Success", response.data.message, 'success')
                     .then((result)=>{
                         if(result.isConfirmed){
-                            this.$route.push({name: 'baptism'});
+                            router.push({name: 'baptism'});
                         }
                     })
                 }
@@ -52,6 +54,7 @@ export default{
     actions: {
         addBaptism(context, payload){
             context.commit('addBaptism', payload);
+            context.getters.getBaptismList;
         }
     }
 }

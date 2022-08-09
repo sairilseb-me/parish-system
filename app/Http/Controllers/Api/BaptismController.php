@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Validator;
 class BaptismController extends Controller
 {
     public function index(){
-        return DB::table('clients')->join('baptism', function($j){
-            $j->on('clients.id', '=', 'baptism.client_id');
-        })->get();
+       $baptism = Baptism::join('clients', 'clients.id', 'baptism.client_id')
+       ->select('baptism.client_id', 'baptism.baptised_date','clients.firstName', 'clients.lastName', 'clients.barangay', 'clients.municipality', 'clients.province')
+       ->get();
+       return $baptism;
     }
 
     public function store(Request $request){
@@ -47,8 +48,7 @@ class BaptismController extends Controller
     }
 
     public function searchClientBaptism($id){
-        $client = Client::query()->where('id', $id)->with('baptism')->first();
-        $priest = Priest::query()->where('id', $client->baptism->priest_id)->first();
-        return $priest;
+       $client = Baptism::where('client_id', $id)->with('client', 'priest')->first();
+        return $client;
     }
 }

@@ -15,10 +15,10 @@ class Baptism extends Model
     protected $table = 'baptism';
 
     public function priest(){
-        return $this->hasMany(Priest::class);
+        return $this->belongsTo(Priest::class, 'priest_id');
     }
 
     public function client(){
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'client_id');
     }
 }

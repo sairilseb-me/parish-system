@@ -5425,7 +5425,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('baptism', ['getBaptismList', 'loadBaptismList']))
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('baptism', ['getBaptismList', 'loadBaptismList'])),
+  mounted: function mounted() {
+    this.getBaptismList;
+  },
+  methods: {
+    convertDate: function convertDate(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  }
 });
 
 /***/ }),
@@ -6198,11 +6206,11 @@ var render = function render() {
   return _c("div", {
     staticClass: "container mt-5"
   }, [_vm._m(0), _vm._v(" "), _c("div", [_c("table", {
-    staticClass: "table table-striped mt-3"
-  }, [_vm._m(1), _vm._v(" "), !_vm.loadBaptismList.data ? _c("div", [_vm._m(2)]) : _c("tbody", _vm._l(_vm.loadBaptismList.data, function (baptism) {
+    staticClass: "table table-hover table-striped mt-3"
+  }, [_vm._m(1), _vm._v(" "), !_vm.loadBaptismList ? _c("div", [_vm._m(2)]) : _c("tbody", _vm._l(_vm.loadBaptismList, function (baptism) {
     return _c("tr", {
       key: baptism.id
-    });
+    }, [_c("td", [_vm._v(_vm._s(baptism.firstName) + " " + _vm._s(baptism.lastName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(baptism.barangay) + " " + _vm._s(baptism.mmunicipality) + " " + _vm._s(baptism.province))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.convertDate(baptism.baptised_date)))]), _vm._v(" "), _vm._m(3, true)]);
   }), 0)])])]);
 };
 
@@ -6241,6 +6249,13 @@ var staticRenderFns = [function () {
       "aria-hidden": "true"
     }
   }), _vm._v("\n                    Loading...\n                ")]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("td", [_c("button", {
+    staticClass: "btn btn-primary"
+  }, [_vm._v("View Details")])]);
 }];
 render._withStripped = true;
 
@@ -7805,6 +7820,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _routes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../routes.js */ "./resources/js/routes.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7820,6 +7837,7 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('http://127.0.0.1:8000/api/baptism').then(function (response) {
         if (response.status === 200) {
           state.baptisms = response.data;
+          console.log(state.baptisms);
         }
       });
     },
@@ -7829,8 +7847,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mutations: {
     addBaptism: function addBaptism(state, payload) {
-      var _this = this;
-
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('http://127.0.0.1:8000/api/baptism/add-baptism', payload).then(function (response) {
         if (response.data.inputErrors) {
           state.inputErrors = [];
@@ -7848,7 +7864,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.success) {
           sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire("Success", response.data.message, 'success').then(function (result) {
             if (result.isConfirmed) {
-              _this.$route.push({
+              _routes_js__WEBPACK_IMPORTED_MODULE_2__["default"].push({
                 name: 'baptism'
               });
             }
@@ -7860,6 +7876,7 @@ __webpack_require__.r(__webpack_exports__);
   actions: {
     addBaptism: function addBaptism(context, payload) {
       context.commit('addBaptism', payload);
+      context.getters.getBaptismList;
     }
   }
 });
