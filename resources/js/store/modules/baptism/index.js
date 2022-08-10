@@ -23,6 +23,9 @@ export default{
         loadBaptismList(state){
             return state.baptisms;
         },
+        loadBaptismData(state){
+            return state.baptism;
+        }
     },
     mutations: {
         addBaptism(state, payload){
@@ -49,12 +52,30 @@ export default{
                     })
                 }
             })
+        },
+        getSpecificBaptismData(state, payload){
+            axios.get('/api/baptism/specific-baptism/' + payload)
+            .then((response)=>{
+                if(response.status === 200){
+                    state.baptism = response.data;
+                }
+            }).catch((err)=>{
+                Swal.fire("Error", "Cannot get data from database.", 'error')
+                .then((result)=>{
+                    if(result.isConfirmed){
+                        router.push({name: 'baptism'});
+                    }
+                })
+            })
         }
     },
     actions: {
         addBaptism(context, payload){
             context.commit('addBaptism', payload);
             context.getters.getBaptismList;
+        },
+        getSpecificBaptismData(context, payload){
+            context.commit('getSpecificBaptismData', payload);
         }
     }
 }

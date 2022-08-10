@@ -48,7 +48,7 @@ class BaptismController extends Controller
     }
 
     public function searchSpecificBaptism($id){
-       $baptism = Baptism::where('client_id', $id)->with('client', 'priest')->get();
+       $baptism = Baptism::where('client_id', $id)->with('client', 'priest')->first();
        return $baptism;
     }
 }

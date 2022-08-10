@@ -24,7 +24,7 @@
                             <td>{{ baptism.firstName }} {{ baptism.lastName }}</td>
                             <td>{{ baptism.barangay }} {{ baptism.mmunicipality }} {{ baptism.province }}</td>
                             <td>{{ convertDate(baptism.baptised_date) }}</td>
-                            <td><button class="btn btn-primary">View Details</button></td>
+                            <td><router-link class="btn btn-primary" @click="triggerViewDetails(baptism.id)" :to="{name: 'specific-baptism'}">View Details</router-link></td>
                         </tr>
                     </tbody>
                 </table>
@@ -39,12 +39,17 @@ export default {
     computed: {
         ...mapGetters('baptism', ['getBaptismList', 'loadBaptismList']),
     },
+
     mounted() {
         this.getBaptismList;
     },
     methods: {
+         ...mapActions('baptism', ['getSpecificBaptismData']),
         convertDate(date){
             return new Date(date).toLocaleDateString();
+        },
+        triggerViewDetails(id){
+            this.getSpecificBaptismData(id);
         }
     }
 }

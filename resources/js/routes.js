@@ -7,7 +7,9 @@ import BaptismPage from './components/pages/baptism/BaptismPage.vue';
 import MarriagePage from './components/pages/marriage/MarriagePage.vue';
 import PriestsPage from './components/pages/priest/PriestPage.vue';
 import AddBaptism from './components/pages/baptism/AddBaptism.vue';
-import NotFound from './components/pages/404Page.vue';
+import EditBaptism from './components/pages/baptism/EditBaptism.vue';
+import SpecificBaptism from './components/pages/baptism/SpecificBaptism.vue';
+import NotFound from './components/pages/404Page.vue';  
 
 const routes = [
     {
@@ -39,6 +41,16 @@ const routes = [
         path: '/baptism/add-baptism',
         component: AddBaptism,
         name: 'add-baptism'
+    },
+    {
+        path: '/baptism/edit-baptism',
+        component: EditBaptism,
+        name: 'edit-baptism',
+    },
+    {
+        path: '/baptism/specific-baptism',
+        component: SpecificBaptism,
+        name: 'specific-baptism',
     },
     {
         path: '/marriage',
